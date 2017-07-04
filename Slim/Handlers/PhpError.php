@@ -31,7 +31,7 @@ class PhpError extends AbstractError
      * @return ResponseInterface
      * @throws UnexpectedValueException
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, \Throwable $error)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $error)
     {
         $contentType = $this->determineContentType($request);
         switch ($contentType) {
@@ -69,7 +69,7 @@ class PhpError extends AbstractError
      *
      * @return string
      */
-    protected function renderHtmlErrorMessage(\Throwable $error)
+    protected function renderHtmlErrorMessage($error)
     {
         $title = 'Slim Application Error';
 
@@ -106,7 +106,7 @@ class PhpError extends AbstractError
      *
      * @return string
      */
-    protected function renderHtmlError(\Throwable $error)
+    protected function renderHtmlError($error)
     {
         $html = sprintf('<div><strong>Type:</strong> %s</div>', get_class($error));
 
@@ -141,7 +141,7 @@ class PhpError extends AbstractError
      *
      * @return string
      */
-    protected function renderJsonErrorMessage(\Throwable $error)
+    protected function renderJsonErrorMessage($error)
     {
         $json = [
             'message' => 'Slim Application Error',
@@ -172,7 +172,7 @@ class PhpError extends AbstractError
      *
      * @return string
      */
-    protected function renderXmlErrorMessage(\Throwable $error)
+    protected function renderXmlErrorMessage($error)
     {
         $xml = "<error>\n  <message>Slim Application Error</message>\n";
         if ($this->displayErrorDetails) {
